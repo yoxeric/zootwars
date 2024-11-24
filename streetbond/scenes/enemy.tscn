@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://cktx1bq6mh4qg"]
+
+[ext_resource type="Script" path="res://scripts/warrior.gd" id="1_xrd6u"]
+[ext_resource type="Material" uid="uid://b5sldrusscyhx" path="res://mat/red.tres" id="2_d0phn"]
+[ext_resource type="PackedScene" uid="uid://bc7q4xyrd8qlf" path="res://scenes/healthbar.tscn" id="2_slr7c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pekhh"]
+height = 1.02063
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6a7d8"]
+radius = 2.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3md4d"]
+radius = 11.0719
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_agxkv"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="enemy" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_xrd6u")
+is_enemy = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_pekhh")
+
+[node name="hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+shape = SubResource("CylinderShape3D_6a7d8")
+
+[node name="view" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 4
+collision_mask = 6
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="view"]
+shape = SubResource("CylinderShape3D_3md4d")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+material = ExtResource("2_d0phn")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46707, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_agxkv")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+
+[node name="ProgressBar" parent="Sprite3D/SubViewport" instance=ExtResource("2_slr7c")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="body_entered" from="view" to="." method="_on_view_body_entered"]
+[connection signal="body_exited" from="view" to="." method="_on_view_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
