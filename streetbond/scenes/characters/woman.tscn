@@ -1,0 +1,68 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg25pu210lifl"]
+
+[ext_resource type="Script" path="res://scripts/warrior.gd" id="1_6dj5j"]
+[ext_resource type="PackedScene" uid="uid://bc7q4xyrd8qlf" path="res://scenes/healthbar.tscn" id="2_6defp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pekhh"]
+radius = 2.0
+height = 4.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_h36ju"]
+radius = 20.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3md4d"]
+height = 3.0
+radius = 50.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b8ocr"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="mra" type="CharacterBody3D"]
+collision_layer = 3
+collision_mask = 3
+slide_on_ceiling = false
+script = ExtResource("1_6dj5j")
+team = 1
+health = 2
+damage = 1
+speed = 70
+attack_speed = 1
+price = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("CapsuleShape3D_pekhh")
+
+[node name="hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+shape = SubResource("CylinderShape3D_h36ju")
+
+[node name="view" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="view"]
+shape = SubResource("CylinderShape3D_3md4d")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 17, 0)
+billboard = 1
+texture = SubResource("ViewportTexture_b8ocr")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+transparent_bg = true
+
+[node name="ProgressBar" parent="Sprite3D/SubViewport" instance=ExtResource("2_6defp")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]
+[connection signal="body_entered" from="view" to="." method="_on_view_body_entered"]
+[connection signal="body_exited" from="view" to="." method="_on_view_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

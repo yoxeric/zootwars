@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=3 uid="uid://bwxlbbvof27gs"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_0sabw"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_vcdew"]
+[ext_resource type="Material" uid="uid://b5sldrusscyhx" path="res://mat/red.tres" id="5_i0kgw"]
+[ext_resource type="Material" uid="uid://dbjx2o3b5hpb1" path="res://mat/blue.tres" id="5_iqt22"]
+[ext_resource type="PackedScene" uid="uid://dkb0vk52b8tf1" path="res://scenes/base.tscn" id="5_r7okm"]
+[ext_resource type="Material" uid="uid://cevw4m71edpm6" path="res://mat/green.tres" id="7_bejnr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j45q5"]
+sky_top_color = Color(0.647581, 0.707502, 0.83071, 1)
+sky_horizon_color = Color(0.697095, 0.716365, 0.762677, 1)
+ground_bottom_color = Color(0.1408, 0.15796, 0.22, 1)
+ground_horizon_color = Color(0.697095, 0.716365, 0.762677, 1)
+
+[sub_resource type="Sky" id="Sky_by3tj"]
+sky_material = SubResource("ProceduralSkyMaterial_j45q5")
+
+[sub_resource type="Environment" id="Environment_nrt6p"]
+background_mode = 2
+sky = SubResource("Sky_by3tj")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_78481"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cpcye"]
+size = Vector2(500, 500)
+
+[node name="main" type="Node3D"]
+script = ExtResource("1_0sabw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nrt6p")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.960294, -0.120548, 0.251603, 0, 0.901833, 0.432086, -0.278991, 0.414929, -0.866024, 0, 0, 0)
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="plyr" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0883883, 0, 0.0366117)
+collision_layer = 0
+script = ExtResource("2_vcdew")
+
+[node name="Camera3D" type="Camera3D" parent="plyr"]
+transform = Transform3D(1, 0, 0, 0, 0.707106, 0.707107, 0, -0.707106, 0.707107, 0, 50, 50)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="plyr"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_78481")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="plyr"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+visible = false
+
+[node name="base1" parent="." instance=ExtResource("5_r7okm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -170, 0, 0)
+material_override = ExtResource("5_iqt22")
+
+[node name="base2" parent="." instance=ExtResource("5_r7okm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 170, 0, 0)
+material_override = ExtResource("5_i0kgw")
+team = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="map" type="Node3D" parent="."]
+
+[node name="border2" type="CSGBox3D" parent="map"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 100)
+transparency = 0.98
+cast_shadow = 0
+use_collision = true
+size = Vector3(20, 2, 400)
+
+[node name="border1" type="CSGBox3D" parent="map"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, -100)
+transparency = 0.98
+cast_shadow = 0
+use_collision = true
+size = Vector3(20, 2, 400)
+
+[node name="border3" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, 1, -200, 1, 0)
+transparency = 0.98
+cast_shadow = 0
+use_collision = true
+size = Vector3(20, 2, 250)
+
+[node name="border4" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, -1.19209e-07, 0, 1, 0, 1.19209e-07, 0, 1, 200, 1, 0)
+transparency = 0.98
+cast_shadow = 0
+use_collision = true
+size = Vector3(20, 2, 250)
+
+[node name="ground" type="CSGMesh3D" parent="map"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+use_collision = true
+mesh = SubResource("PlaneMesh_cpcye")
+material = ExtResource("7_bejnr")
+
+[node name="money2" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "100"
+
+[node name="money" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "100"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

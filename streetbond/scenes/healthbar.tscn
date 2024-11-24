@@ -1,15 +1,21 @@
-[gd_scene format=3 uid="uid://bc7q4xyrd8qlf"]
+[gd_scene load_steps=2 format=3 uid="uid://d4eeqfct6vua5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgfep"]
+bg_color = Color(0.98, 0.1078, 0.1078, 1)
 
 [node name="ProgressBar" type="ProgressBar"]
-anchors_preset = 8
-anchor_left = 0.5
+custom_minimum_size = Vector2(300, 20)
+anchors_preset = -1
+anchor_left = 0.442
 anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -168.5
-offset_top = -13.5
-offset_right = 168.5
-offset_bottom = 13.5
+anchor_bottom = 0.503
+offset_left = 72.24
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = -0.160004
 grow_horizontal = 2
 grow_vertical = 2
-value = 100.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_sgfep")
+value = 50.0
+show_percentage = false
