@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://kc2a24e41s06"]
+
+[node name="Node" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 354.0
+offset_top = 260.0
+offset_right = -354.0
+offset_bottom = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main MEnue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="Button2" type="Button" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="LineEdit" type="LineEdit" parent="CanvasLayer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Address"
+alignment = 1
