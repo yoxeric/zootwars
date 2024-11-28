@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://celrkfjlqxsir"]
+[gd_scene load_steps=30 format=3 uid="uid://celrkfjlqxsir"]
 
 [ext_resource type="Script" path="res://scripts/mob.gd" id="1_4qei7"]
 [ext_resource type="PackedScene" uid="uid://b5d6irirvj4hv" path="res://assets/characters/gaiman.blend" id="3_586mb"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://8qr20qdhq6kf" path="res://scenes/ui/healthbar_team2.tscn" id="4_rbyrf"]
 [ext_resource type="PackedScene" uid="uid://c3bewfs3rjov7" path="res://scenes/ui/levelcounter.tscn" id="5_mduwe"]
 [ext_resource type="PackedScene" uid="uid://bb5kbf0w688up" path="res://scenes/ui/levelbar.tscn" id="6_hyl58"]
+[ext_resource type="Material" uid="uid://bi7twbpobbgpn" path="res://scenes/vfx/blood.tres" id="7_4mcv3"]
+[ext_resource type="Shader" uid="uid://6k3uw44rvvkh" path="res://scenes/vfx/smoke.tres" id="7_dyafn"]
+[ext_resource type="Material" uid="uid://dj8xadgstgbir" path="res://scenes/vfx/explotion2.tres" id="10_3ywoe"]
+[ext_resource type="Material" uid="uid://bop007okopgw0" path="res://scenes/vfx/explotion.tres" id="10_wp38c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pekhh"]
 resource_local_to_scene = true
@@ -315,23 +319,53 @@ _data = {
 "walk": SubResource("Animation_tneee")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6rs72"]
-angle_min = -720.0
-angle_max = 720.0
-direction = Vector3(1, 1, 1)
-spread = 180.0
-initial_velocity_max = 20.0
-orbit_velocity_min = -1.702
-orbit_velocity_max = 1.452
-scale_min = 0.1
-scale_max = 3.0
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o4y36"]
 albedo_color = Color(1, 0.29, 0.29, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_25704"]
 material = SubResource("StandardMaterial3D_o4y36")
 size = Vector2(0.3, 0.2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vgwn"]
+render_priority = 0
+shader = ExtResource("7_dyafn")
+shader_parameter/cloud_speed = Vector2(0, 0.5)
+shader_parameter/cloud_intensity = 1.0
+shader_parameter/power = 5.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_qaads"]
+radius = 10.0
+height = 10.0
+
+[sub_resource type="Curve" id="Curve_e0q5m"]
+_data = [Vector2(0, 0), 0.0, 2.63854, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7hti6"]
+curve = SubResource("Curve_e0q5m")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ga6pp"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 90.0
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 5.0
+scale_max = 15.0
+scale_curve = SubResource("CurveTexture_7hti6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hwlm6"]
+albedo_color = Color(0.88, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.51, 0.02, 1)
+emission_energy_multiplier = 20.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6bhn5"]
+material = SubResource("StandardMaterial3D_hwlm6")
+size = Vector2(0.05, 1)
+center_offset = Vector3(0, 0.4, 0)
+orientation = 2
 
 [node name="mob" type="CharacterBody3D"]
 transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
@@ -398,14 +432,44 @@ libraries = {
 autoplay = "unites/walk"
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 8.66667, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 8.66667, 0)
+visible = false
 emitting = false
-amount = 50
+amount = 100
+lifetime = 0.5
 one_shot = true
+speed_scale = 0.9
 explosiveness = 1.0
 randomness = 1.0
-process_material = SubResource("ParticleProcessMaterial_6rs72")
+process_material = ExtResource("7_4mcv3")
 draw_pass_1 = SubResource("PlaneMesh_25704")
+
+[node name="smoke_vfx" type="Node3D" parent="."]
+
+[node name="smoke_low" type="GPUParticles3D" parent="smoke_vfx"]
+material_override = SubResource("ShaderMaterial_5vgwn")
+emitting = false
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+process_material = ExtResource("10_wp38c")
+draw_pass_1 = SubResource("SphereMesh_qaads")
+
+[node name="smoke_high" type="GPUParticles3D" parent="smoke_vfx"]
+material_override = SubResource("ShaderMaterial_5vgwn")
+emitting = false
+one_shot = true
+explosiveness = 0.9
+randomness = 1.0
+process_material = ExtResource("10_3ywoe")
+draw_pass_1 = SubResource("SphereMesh_qaads")
+
+[node name="sparcles" type="GPUParticles3D" parent="smoke_vfx"]
+emitting = false
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_ga6pp")
+draw_pass_1 = SubResource("PlaneMesh_6bhn5")
 
 [connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="hitbox" to="." method="_on_hitbox_body_exited"]

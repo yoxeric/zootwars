@@ -1,0 +1,28 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://bi7twbpobbgpn"]
+
+[sub_resource type="Curve" id="Curve_e0hdf"]
+min_value = -5.0
+max_value = 50.0
+_data = [Vector2(0, -5), 0.0, 0.0302917, 0, 0, Vector2(1, 20.8634), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_bro8e"]
+curve = SubResource("Curve_e0hdf")
+
+[resource]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 2.0
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(1, 1, 2)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+orbit_velocity_min = -1.702
+orbit_velocity_max = 1.452
+damping_min = 3.0
+damping_max = 10.0
+damping_curve = SubResource("CurveTexture_bro8e")
+scale_min = 0.1
+scale_max = 3.0
+anim_offset_max = 1.0

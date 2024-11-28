@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bchtwq7uobs7k"]
+
+[ext_resource type="Shader" uid="uid://6k3uw44rvvkh" path="res://scenes/vfx/smoke.tres" id="1_mm3ax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hb4wi"]
+render_priority = 0
+shader = ExtResource("1_mm3ax")
+shader_parameter/cloud_speed = Vector2(0, 0.2)
+shader_parameter/cloud_intensity = 0.1
+shader_parameter/power = 10.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_m4kht"]
+lightmap_size_hint = Vector2i(159, 80)
+radius = 5.0
+height = 10.0
+
+[node name="smoke" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+material_override = SubResource("ShaderMaterial_hb4wi")
+mesh = SubResource("SphereMesh_m4kht")
+skeleton = NodePath("../..")

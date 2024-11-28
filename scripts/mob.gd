@@ -49,6 +49,7 @@ var health_bar
 @onready var timer: Timer = $Timer
 @onready var animation_player = $AnimationPlayer
 @onready var particles: GPUParticles3D = $GPUParticles3D
+
 const DMG = preload("res://mat/dmg.tres")
 const DGR = preload("res://mat/danger.tres")
 
@@ -122,7 +123,8 @@ func _physics_process(delta: float) -> void:
 	if health <= 0 || (unit_id == 6 && atk_nb >= 5):
 		# weeb
 		if (unit_id == 5):
-			explode(2)
+			explode(2)	
+			await get_tree().create_timer(1).timeout
 		var win = price / 2 if price / 2 > 1 else 1
 		if team == 1:
 			base_2.money += win
@@ -187,6 +189,10 @@ func attack(enemy, dmg):
 func explode(dmg):
 	for enemy in enemys:
 		attack(enemy, -1)
+	$smoke_vfx/smoke_low.emitting = true
+	$smoke_vfx/smoke_high.emitting = true
+	$smoke_vfx/sparcles.emitting = true
+	
 
 func hit_animation():
 	#var mat = model.get_surface_material(0)
