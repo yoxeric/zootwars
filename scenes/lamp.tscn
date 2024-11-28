@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dp1yr17eoaj4v"]
+
+[ext_resource type="PackedScene" uid="uid://c2oql72ss4mjy" path="res://assets/map/lamp.blend" id="1_5fxct"]
+
+[node name="lamp" type="Node3D"]
+
+[node name="lamp" parent="." instance=ExtResource("1_5fxct")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.12193, 45.4249, 0)
+visible = false
+layers = 2
+light_color = Color(1, 0.9395, 0.89, 1)
+light_energy = 10.0
+light_size = 0.414
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_begin = 700.0
+distance_fade_shadow = 700.0
+distance_fade_length = 15.3
+spot_range = 200.0
+spot_attenuation = 0.4
+spot_angle = 70.0

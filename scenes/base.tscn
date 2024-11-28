@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://dkb0vk52b8tf1"]
+
+[ext_resource type="Script" path="res://scripts/base.gd" id="1_jd6s8"]
+[ext_resource type="PackedScene" uid="uid://d4eeqfct6vua5" path="res://scenes/ui/healthbar.tscn" id="2_8ktnn"]
+[ext_resource type="PackedScene" uid="uid://8qr20qdhq6kf" path="res://scenes/ui/healthbar_team2.tscn" id="4_sdtbo"]
+[ext_resource type="PackedScene" uid="uid://c3bewfs3rjov7" path="res://scenes/ui/levelcounter.tscn" id="5_lhwap"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0vvhs"]
+viewport_path = NodePath("stats/SubViewport")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h23xn"]
+size = Vector3(25, 50, 25)
+
+[node name="base" type="StaticBody3D"]
+collision_layer = 6
+collision_mask = 6
+script = ExtResource("1_jd6s8")
+
+[node name="stats" type="Sprite3D" parent="."]
+transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, 52, 100, 0)
+texture = SubResource("ViewportTexture_0vvhs")
+
+[node name="SubViewport" type="SubViewport" parent="stats"]
+transparent_bg = true
+
+[node name="health" parent="stats/SubViewport" instance=ExtResource("2_8ktnn")]
+
+[node name="health2" parent="stats/SubViewport" instance=ExtResource("4_sdtbo")]
+
+[node name="level" parent="stats/SubViewport" instance=ExtResource("5_lhwap")]
+visible = false
+offset_left = -256.0
+offset_top = -84.5
+offset_right = -106.0
+offset_bottom = 84.5
+theme_override_font_sizes/font_size = 50
+
+[node name="cashTimer" type="Timer" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 100, 0)
+shape = SubResource("BoxShape3D_h23xn")
+
+[connection signal="timeout" from="cashTimer" to="." method="_on_cash_timer_timeout"]

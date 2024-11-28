@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://r8u84p2x2cwk"]
+
+[ext_resource type="Texture2D" uid="uid://nfl5p54vcvt7" path="res://assets/characters/gaiman.png" id="1_pbbi2"]
+
+[node name="profile" type="VBoxContainer"]
+offset_right = 90.0
+offset_bottom = 159.0
+size_flags_horizontal = 0
+size_flags_vertical = 8
+alignment = 2
+
+[node name="img" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_pbbi2")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="price" type="Label" parent="."]
+custom_minimum_size = Vector2(57, 10)
+layout_mode = 2
+text = "10"
+horizontal_alignment = 1
