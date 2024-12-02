@@ -1,6 +1,9 @@
 extends CharacterBody3D
-#extends Mob
-# stats inhareted from Mob_class wich inharent CharacterBody3D
+
+@export var sync_position := Vector3.ZERO
+@export var sync_rotation := Vector3.ZERO
+@export var sync_health := 0
+@export var sync_state := 0
 
 @onready var base_1: Node3D = $"../base1"
 @onready var base_2: Node3D = $"../base2"
@@ -54,6 +57,28 @@ const DMG = preload("res://mat/dmg.tres")
 const DGR = preload("res://mat/danger.tres")
 
 func _ready():
+	set_physics_process(is_multiplayer_authority())
+	
+	# Setup synchronizer
+	if multiplayer:
+		# Update network position when actual position changes
+		position = sync_position
+		rotation = sync_rotation
+		health = sync_health
+		state = sync_state
+	
+	# Your existing _ready code...
+	mob_model = get_node("man/Plane")
+	mob_model.material_overlay = null
+	if team == 1:
+		health_bar = health_team1
+		health_team2.visible = false
+		targets.append(base_2)
+	if team == 2:
+		health_bar = health_team2
+		health_team1.visible = false
+		targets.append(base_1)
+
 	mob_model = get_node("man/Plane")
 	mob_model.material_overlay = null
 	if team == 1:
@@ -79,6 +104,11 @@ func _ready():
 	#set_collision_layer_value(team)
 
 func _physics_process(delta: float) -> void:
+	if not is_multiplayer_authority():
+		# Update position for non-authority peers
+		position = position.lerp(sync_position, delta * 20)
+		rotation = rotation.lerp(sync_rotation, delta * 20)
+		return
 	#states
 	# 1 -> run
 	# 2 -> chase
@@ -117,6 +147,11 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	move_and_slide()
+
+	sync_position = position
+	sync_rotation = rotation
+	sync_health = health
+	sync_state = state
 	
 	#dead
 	#zak
@@ -131,7 +166,6 @@ func _physics_process(delta: float) -> void:
 		if team == 2:
 			base_1.money += win
 		queue_free()
-
 
 func level_up(xpers):
 	xp += xpers

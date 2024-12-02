@@ -17,15 +17,16 @@ warnings/check_invalid_track_paths=false
 config/name="ZootWars"
 config/description="zoot"
 config/version="0.9"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/Test.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.0885599, 0.0885599, 0.0885599, 1)
 config/icon="res://assets/map/tardis.png"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/vsync/vsync_mode=0
 
 [input]
 
