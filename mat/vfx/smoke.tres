@@ -1,8 +1,8 @@
 [gd_resource type="VisualShader" load_steps=31 format=3 uid="uid://6k3uw44rvvkh"]
 
 [ext_resource type="Texture2D" uid="uid://do2qtfyvf7uv7" path="res://mat/gradient_smoke.tres" id="1_53l2l"]
-[ext_resource type="Texture2D" uid="uid://3wc0tara53c" path="res://assets/noise3.jpg" id="2_rqmhu"]
-[ext_resource type="Texture2D" uid="uid://ceg1devifl1s3" path="res://assets/noise1.png" id="3_q8kx7"]
+[ext_resource type="Texture2D" uid="uid://3wc0tara53c" path="res://assets/texture/noise3.jpg" id="2_cux6j"]
+[ext_resource type="Texture2D" uid="uid://ceg1devifl1s3" path="res://assets/texture/noise1.png" id="3_t63n1"]
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_ipgsq"]
 constant = Color(1, 0.3235, 0.00999999, 1)
@@ -21,7 +21,7 @@ default_value = 10.0
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bijjs"]
 output_port_for_preview = 0
-texture = ExtResource("2_rqmhu")
+texture = ExtResource("2_cux6j")
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_k7lv8"]
 operator = 2
@@ -49,7 +49,7 @@ default_value = 0.5
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bxfm1"]
 output_port_for_preview = 0
-texture = ExtResource("3_q8kx7")
+texture = ExtResource("3_t63n1")
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_j7ksm"]
 expanded_output_ports = [0]
@@ -66,7 +66,7 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_6mbn4"]
 output_port_for_preview = 0
-texture = ExtResource("2_rqmhu")
+texture = ExtResource("2_cux6j")
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_4igc8"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0.5)]
@@ -95,7 +95,7 @@ operator = 2
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_u3lsj"]
 output_port_for_preview = 0
 expanded_output_ports = [0]
-texture = ExtResource("2_rqmhu")
+texture = ExtResource("2_cux6j")
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_xpp5k"]
 
@@ -252,7 +252,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-685.506, -100.199)
 nodes/vertex/0/position = Vector2(400, 160)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_n53i2")
 nodes/vertex/2/position = Vector2(-1340, 300)

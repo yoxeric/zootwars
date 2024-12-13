@@ -5,6 +5,7 @@ class_name Mob
 var unit_id = 1
 var model
 var pfp
+var smiya
 
 var team = 0
 # --------------
@@ -22,9 +23,10 @@ var xp = 0
 var base_health = health
 var atk_nb = 0
 
-func _init(mdl, pic, p, hlt, dmg, sp, asp, r, vr):
+func _init(mdl, pic, smyto, p, hlt, dmg, sp, asp, r, vr):
 	model = mdl
 	pfp = pic
+	smiya = smyto
 	price = p
 	health = hlt
 	damage = dmg

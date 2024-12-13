@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://r8u84p2x2cwk"]
+[gd_scene load_steps=4 format=3 uid="uid://r8u84p2x2cwk"]
 
 [ext_resource type="Texture2D" uid="uid://nfl5p54vcvt7" path="res://assets/characters/gaiman.png" id="1_pbbi2"]
+[ext_resource type="Texture2D" uid="uid://bk4mvwhaq50pi" path="res://assets/map/coin.png" id="1_rf87r"]
+[ext_resource type="LabelSettings" uid="uid://cp6vlsso5xfiy" path="res://mat/ui/profile_txt.tres" id="2_kyiwn"]
 
 [node name="profile" type="VBoxContainer"]
 offset_right = 90.0
@@ -9,14 +11,30 @@ size_flags_horizontal = 0
 size_flags_vertical = 8
 alignment = 2
 
+[node name="p" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ColorRect" type="TextureRect" parent="p"]
+layout_mode = 2
+texture = ExtResource("1_rf87r")
+expand_mode = 2
+
+[node name="price" type="Label" parent="p"]
+custom_minimum_size = Vector2(57, 10)
+layout_mode = 2
+text = "10"
+label_settings = ExtResource("2_kyiwn")
+horizontal_alignment = 1
+
 [node name="img" type="TextureRect" parent="."]
 layout_mode = 2
 texture = ExtResource("1_pbbi2")
 expand_mode = 5
 stretch_mode = 5
 
-[node name="price" type="Label" parent="."]
+[node name="name" type="Label" parent="."]
 custom_minimum_size = Vector2(57, 10)
 layout_mode = 2
-text = "10"
+text = "roadman"
+label_settings = ExtResource("2_kyiwn")
 horizontal_alignment = 1

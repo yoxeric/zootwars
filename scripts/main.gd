@@ -6,25 +6,25 @@ var WIN = preload("res://scenes/win.tscn").instantiate()
 @export var base_profile = preload("res://scenes/ui/unit_profile.tscn")
 
 #  ---------- characters ---------- 3d - pic
-# - price - hp - atk - spd - atk spd - atk_rng - view_rng -
+# smiya - price - hp - atk - spd - atk spd - atk_rng - view_rng -
 var mobs = [Mob.new(preload("res://assets/characters/gaiman.blend"), preload("res://assets/characters/gaiman.png"),
-2, 2, 1, 25, 1, 10, 50),
+"roadman", 2, 2, 1, 25, 1, 10, 50),
 Mob.new(preload("res://assets/characters/yungin.blend"), preload("res://assets/characters/yungin.png"),
-3, 1, 1, 30, 0.8, 40, 50),
+"yungin", 3, 1, 1, 30, 0.8, 40, 50),
 Mob.new(preload("res://assets/characters/grini.blend"),  preload("res://assets/characters/grini.png"),
-6, 5, 2, 20, 1.2, 10, 50),
+"nigir", 6, 5, 2, 20, 1.2, 10, 50),
 Mob.new(preload("res://assets/characters/zootman.blend"), preload("res://assets/characters/zootman.png"), 
-5, 1, 2, 70, 0.9, 10, 50),
+"zootman", 5, 1, 2, 70, 0.9, 10, 50),
 Mob.new(preload("res://assets/characters/weeb.blend"), preload("res://assets/characters/weeb.png"),    
-8, 2, 5, 30, 1, 15, 50),
+"weeb", 8, 2, 5, 30, 1, 15, 50),
 Mob.new(preload("res://assets/characters/zak.blend"), preload("res://assets/characters/zak.png"),     
-7, 100, 1, 25, 1, 30, 50),
+"zak", 7, 100, 1, 25, 1, 30, 50),
 Mob.new(preload("res://assets/characters/sayad.blend"), preload("res://assets/characters/sayad.png"),   
-8, 2, 2, 20, 1, 70, 100),
+"sayad", 8, 2, 2, 20, 1, 70, 100),
 Mob.new(preload("res://assets/characters/nsab.blend"), preload("res://assets/characters/nsab.png"),    
-20, 2, 2, 25, 1, 15, 50),
+"nsab", 20, 2, 2, 25, 1, 15, 50),
 Mob.new(preload("res://assets/characters/conman.blend"), preload("res://assets/characters/conman.png"), 
-8, 4, 4, 20, 1, 10, 50)]
+"conman", 8, 4, 4, 20, 1, 10, 50)]
 
 
 @onready var base1: Node3D = $base1
@@ -61,13 +61,17 @@ func _ready() -> void:
 func add_unit_profile(unit_id):
 	var profile = base_profile.instantiate()
 	selection.size.x = profile_size
-	#selection.size.y = profile_size * 3 / 4
+	selection.size.y = profile_size * 3 / 4
+	
 	profile.custom_minimum_size.x = profile_size
+	
 	var img = profile.get_node("img")
-	var price_tag = profile.get_node("price")
+	var price_tag = profile.get_node("p/price")
+	var smiya_tag = profile.get_node("name")
 	
 	img.texture = mobs[unit_id - 1].pfp
 	price_tag.text = str(mobs[unit_id - 1].price)
+	smiya_tag.text = str(mobs[unit_id - 1].smiya)
 	profile_holder.add_child(profile)
 	unit_profiles.append(profile)
 
@@ -154,6 +158,8 @@ func spawn(unit_id, pos, team):
 	
 	mob.model = mobs[unit_id - 1].model
 	mob.pfp = mobs[unit_id - 1].pfp
+	mob.smiya = mobs[unit_id - 1].smiya
+	
 	mob.price = mobs[unit_id - 1].price
 	mob.health = mobs[unit_id - 1].health
 	mob.damage = mobs[unit_id - 1].damage

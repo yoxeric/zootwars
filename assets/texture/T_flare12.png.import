@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://t320pvtocydx"
-path.s3tc="res://.godot/imported/noise2.jpg-cb92b4861135c51faa41678940e18da1.s3tc.ctex"
+uid="uid://b4444qvwiu5vt"
+path="res://.godot/imported/T_flare12.png-4092d8d23d82d8e68c1e41d9c9f472dd.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/noise2.jpg"
-dest_files=["res://.godot/imported/noise2.jpg-cb92b4861135c51faa41678940e18da1.s3tc.ctex"]
+source_file="res://assets/texture/T_flare12.png"
+dest_files=["res://.godot/imported/T_flare12.png-4092d8d23d82d8e68c1e41d9c9f472dd.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

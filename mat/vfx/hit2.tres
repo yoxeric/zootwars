@@ -1,0 +1,70 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://ui8fdk6xc0yl"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_plgy2"]
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_q673o"]
+expanded_output_ports = [0]
+source = 5
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_7ch8r"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_17tta"]
+parameter_name = "hit_Texture"
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeBillboard" id="VisualShaderNodeBillboard_f774r"]
+billboard_type = 0
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded;
+
+uniform sampler2D hit_Texture : source_color;
+
+
+
+void vertex() {
+// GetBillboardMatrix:2
+	// Node is disabled and code is not generated.
+}
+
+void fragment() {
+// Input:2
+	vec4 n_out2p0 = COLOR;
+	float n_out2p4 = n_out2p0.a;
+
+
+	vec4 n_out4p0;
+// Texture2D:4
+	n_out4p0 = texture(hit_Texture, UV);
+	float n_out4p1 = n_out4p0.r;
+
+
+// FloatOp:5
+	float n_out5p0 = n_out4p1 * n_out2p4;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out5p0;
+
+
+}
+"
+modes/cull = 2
+flags/unshaded = true
+nodes/vertex/2/node = SubResource("VisualShaderNodeBillboard_f774r")
+nodes/vertex/2/position = Vector2(-540, 380)
+nodes/vertex/connections = PackedInt32Array(2, 0, 0, 10)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_plgy2")
+nodes/fragment/2/position = Vector2(-1140, 120)
+nodes/fragment/4/node = SubResource("VisualShaderNodeTexture_q673o")
+nodes/fragment/4/position = Vector2(-960, 740)
+nodes/fragment/5/node = SubResource("VisualShaderNodeFloatOp_7ch8r")
+nodes/fragment/5/position = Vector2(-360, 860)
+nodes/fragment/6/node = SubResource("VisualShaderNodeTexture2DParameter_17tta")
+nodes/fragment/6/position = Vector2(-1720, 840)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 2, 4, 5, 1, 5, 0, 0, 1, 6, 0, 4, 2, 4, 1, 5, 0)

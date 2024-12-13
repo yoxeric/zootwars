@@ -10,6 +10,7 @@ const JUMP_VELOCITY = 4.5
 var unit_id = 1
 var model
 var pfp
+var smiya
 
 var team = 0
 # --------------
@@ -48,7 +49,6 @@ var health_bar
 # animation
 @onready var timer: Timer = $Timer
 @onready var animation_player = $AnimationPlayer
-@onready var particles: GPUParticles3D = $GPUParticles3D
 
 const DMG = preload("res://mat/dmg.tres")
 const DGR = preload("res://mat/danger.tres")
@@ -121,15 +121,18 @@ func _physics_process(delta: float) -> void:
 	#dead
 	#zak
 	if health <= 0 || (unit_id == 6 && atk_nb >= 5):
+		state = 3
+		#if not animation_player.is_playing():
+		animation_player.play("unites/die")
 		# weeb
 		if (unit_id == 5):
 			explode(2)	
-			await get_tree().create_timer(1).timeout
 		var win = price / 2 if price / 2 > 1 else 1
 		if team == 1:
 			base_2.money += win
 		if team == 2:
 			base_1.money += win
+		await get_tree().create_timer(0.5).timeout
 		queue_free()
 
 
@@ -189,9 +192,9 @@ func attack(enemy, dmg):
 func explode(dmg):
 	for enemy in enemys:
 		attack(enemy, -1)
-	$smoke_vfx/smoke_low.emitting = true
-	$smoke_vfx/smoke_high.emitting = true
-	$smoke_vfx/sparcles.emitting = true
+	$vfx/smoke/smoke_low.emitting = true
+	$vfx/smoke/smoke_high.emitting = true
+	$vfx/smoke/sparcles.emitting = true
 	
 
 func hit_animation():
@@ -205,7 +208,10 @@ func hit_animation():
 	mob_model.material_overlay = DMG
 	mob_model.material_overlay = null
 	# particles
-	particles.emitting = true
+	$vfx/blood.emitting = true
+	$vfx/hit/hit_sparkle.emitting = true
+	$vfx/hit/hit.emitting = true
+
 
 # enemy sighted
 func _on_view_body_entered(body: Node3D) -> void:

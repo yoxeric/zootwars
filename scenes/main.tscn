@@ -33,6 +33,7 @@ glow_enabled = true
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_0sabw")
+profile_size = 200
 
 [node name="ui" type="Control" parent="."]
 layout_mode = 3
@@ -494,7 +495,6 @@ spot_angle = 40.0
 environment = SubResource("Environment_nrt6p")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
 autostart = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
