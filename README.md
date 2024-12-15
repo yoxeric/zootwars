@@ -16,8 +16,8 @@ Zak was pacing around, complaining about how everything was falling apart, but n
 it was Conman who fanned the flames. He pretended to be the peacemaker, spinning lies and manipulating everyone into thinking he was the one trying to stop the war. Meanwhile, he was secretly stirring the pot, making sure the chaos kept growing.
 Alliances were shifting, insults flying, and the whole damn place was a ticking time bomb—if only anyone could get their act together long enough to stop it.
 
-<p align="center">
-	<img  src="./assets/map/tardis.png"  width="32" height="32" />
+<p align="left">
+	<img  src="./assets/map/tardis.png"  width="32" height="50" />
 </p>
 
 You cannot call the doctor with any command for now ! 
