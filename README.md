@@ -14,5 +14,5 @@ Alliances were shifting, insults flying, and the whole damn place was a ticking 
 You cannot call the doctor with any command for now ! 
 
 <p align="center">
-	<img  src="./res/banner.jpg"  width="640" height="360" />
+	<img  src="./banner.jpg"  width="640" height="360" />
 </p>
