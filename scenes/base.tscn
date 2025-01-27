@@ -15,6 +15,7 @@ size = Vector3(25, 50, 25)
 collision_layer = 6
 collision_mask = 6
 script = ExtResource("1_jd6s8")
+cashflow = 2
 
 [node name="stats" type="Sprite3D" parent="."]
 transform = Transform3D(-8.74228e-07, 0, 20, 0, 20, 0, -20, 0, -8.74228e-07, 52, 100, 0)

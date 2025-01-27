@@ -24,7 +24,6 @@ custom_minimum_size = Vector2(57, 10)
 layout_mode = 2
 text = "10"
 label_settings = ExtResource("2_kyiwn")
-horizontal_alignment = 1
 
 [node name="img" type="TextureRect" parent="."]
 layout_mode = 2

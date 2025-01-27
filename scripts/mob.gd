@@ -126,12 +126,13 @@ func _physics_process(delta: float) -> void:
 		animation_player.play("unites/die")
 		# weeb
 		if (unit_id == 5):
-			explode(2)	
-		var win = price / 2 if price / 2 > 1 else 1
-		if team == 1:
-			base_2.money += win
-		if team == 2:
-			base_1.money += win
+			explode(2)
+		# nsab
+		if (unit_id == 8):
+			if team == 1:
+				base_2.money += price / 20
+			if team == 2:
+				base_1.money += price / 20
 		await get_tree().create_timer(0.5).timeout
 		queue_free()
 

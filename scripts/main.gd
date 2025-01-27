@@ -43,12 +43,12 @@ Mob.new(preload("res://assets/characters/conman.blend"), preload("res://assets/c
 @onready var hp2 = $ui/team2/hp/hp_txt
 
 var unit_profiles = [ ]
-@export var profile_size = 100
+var profile_size = 100 # change in main (export)
 var selected_unite = 1
 var enemy_selected_unite = 1
 
-@export var spawn_shift = 58
-@export var spawn_size = 400
+var spawn_shift = 58
+var spawn_size = 222
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -60,12 +60,8 @@ func _ready() -> void:
 
 func add_unit_profile(unit_id):
 	var profile = base_profile.instantiate()
-	selection.size.x = profile_size
-	selection.size.y = profile_size * 3 / 4
-	
-	profile.custom_minimum_size.x = profile_size
-	
 	var img = profile.get_node("img")
+	var price = profile.get_node("price")
 	var price_tag = profile.get_node("p/price")
 	var smiya_tag = profile.get_node("name")
 	
@@ -74,7 +70,16 @@ func add_unit_profile(unit_id):
 	smiya_tag.text = str(mobs[unit_id - 1].smiya)
 	profile_holder.add_child(profile)
 	unit_profiles.append(profile)
-
+	
+	selection.size.x = profile_size + profile_size / 20
+	#selection.size.y = profile_size * 3 / 4
+	
+	profile.custom_minimum_size.x = profile_size
+	#price.custom_minimum_size.x = profile_size/2
+	#img.custom_minimum_size.x = profile_size
+	
+	smiya_tag.add_theme_font_size_override("font_size", profile_size / 8)
+	price_tag.add_theme_font_size_override("font_size", profile_size / 8)
 
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
@@ -105,7 +110,7 @@ func _input(event):
 		selected_unite = 8
 	if Input.is_action_just_pressed("9"):
 		selected_unite = 9
-	selection.position.x = (selected_unite - 1) * profile_size
+	selection.position.x = (selected_unite - 1) * (profile_size + profile_size / 20)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -137,7 +142,7 @@ func spawn_mob(team, zpos):
 		selection = enemy_selected_unite
 		base = base2
 		dir = -1
-	if mobs[selection - 1].price < base.money:
+	if mobs[selection - 1].price <= base.money:
 		base.money -= mobs[selection - 1].price
 		var pos = Vector3(base.position.x + spawn_shift * dir, 0,  zpos)
 		spawn(selection, pos, team)

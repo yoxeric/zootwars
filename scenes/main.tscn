@@ -33,7 +33,6 @@ glow_enabled = true
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_0sabw")
-profile_size = 200
 
 [node name="ui" type="Control" parent="."]
 layout_mode = 3
@@ -149,14 +148,15 @@ disabled = true
 [node name="base2" parent="." instance=ExtResource("5_r7okm")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 500, 0, 0)
 team = 2
-money = 20
+money = 0
 
 [node name="base2model" parent="base2" instance=ExtResource("4_dhr4e")]
 transform = Transform3D(-4, 0, -3.49691e-07, 0, 4, 0, 3.49691e-07, 0, -4, 0, 0, 0)
 
 [node name="base1" parent="." instance=ExtResource("5_r7okm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 0, 0)
-money = 20
+money = 28
+cashflow = 1
 
 [node name="base1model" parent="base1" instance=ExtResource("3_a8d8i")]
 transform = Transform3D(-4, 0, -6.03983e-07, 0, 4, 0, 6.03983e-07, 0, -4, 0, 0, 0)
