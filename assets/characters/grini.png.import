@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://cu1ulp10v4tnd"
 path.s3tc="res://.godot/imported/grini.png-3fec505793a5b30cd4d476a81d0f8d9c.s3tc.ctex"
+path.etc2="res://.godot/imported/grini.png-3fec505793a5b30cd4d476a81d0f8d9c.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/characters/grini.png"
-dest_files=["res://.godot/imported/grini.png-3fec505793a5b30cd4d476a81d0f8d9c.s3tc.ctex"]
+dest_files=["res://.godot/imported/grini.png-3fec505793a5b30cd4d476a81d0f8d9c.s3tc.ctex", "res://.godot/imported/grini.png-3fec505793a5b30cd4d476a81d0f8d9c.etc2.ctex"]
 
 [params]
 

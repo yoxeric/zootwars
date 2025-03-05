@@ -1,8 +1,7 @@
 [gd_resource type="ParticleProcessMaterial" load_steps=3 format=3 uid="uid://bi7twbpobbgpn"]
 
 [sub_resource type="Curve" id="Curve_e0hdf"]
-min_value = -5.0
-max_value = 50.0
+_limits = [-5.0, 50.0, 0.0, 1.0]
 _data = [Vector2(0, -5), 0.0, 0.0302917, 0, 0, Vector2(1, 20.8634), 0.0, 0.0, 0, 0]
 point_count = 2
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://biu4yxyvgmy63"
 path.s3tc="res://.godot/imported/yungin.png-c1108a87b95ad6bf54fa6f1ed4cc4a58.s3tc.ctex"
+path.etc2="res://.godot/imported/yungin.png-c1108a87b95ad6bf54fa6f1ed4cc4a58.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/characters/yungin.png"
-dest_files=["res://.godot/imported/yungin.png-c1108a87b95ad6bf54fa6f1ed4cc4a58.s3tc.ctex"]
+dest_files=["res://.godot/imported/yungin.png-c1108a87b95ad6bf54fa6f1ed4cc4a58.s3tc.ctex", "res://.godot/imported/yungin.png-c1108a87b95ad6bf54fa6f1ed4cc4a58.etc2.ctex"]
 
 [params]
 

@@ -119,7 +119,7 @@ uniform sampler2D tex_frg_5;
 uniform sampler2D tex_frg_12;
 uniform sampler2D tex_frg_22;
 uniform sampler2D depth_tex_frg_25 : hint_depth_texture;
-uniform float power = 10;
+uniform float power = 10.0;
 uniform sampler2D tex_frg_15;
 
 
@@ -204,7 +204,7 @@ void fragment() {
 	float n_in25p0 = 1.00000;
 	{
 		float __depth_tex = texture(depth_tex_frg_25, SCREEN_UV).r;
-		vec4 __depth_world_pos = INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, __depth_tex, 1.0);
+		vec4 __depth_world_pos = INV_PROJECTION_MATRIX * vec4(vec3(SCREEN_UV, __depth_tex) * 2.0 - 1.0, 1.0);
 		__depth_world_pos.xyz /= __depth_world_pos.w;
 		n_out25p0 = clamp(1.0 - smoothstep(__depth_world_pos.z + n_in25p0, __depth_world_pos.z, VERTEX.z), 0.0, 1.0);
 	}

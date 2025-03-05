@@ -1,6 +1,6 @@
 [gd_scene load_steps=41 format=3 uid="uid://celrkfjlqxsir"]
 
-[ext_resource type="Script" path="res://scripts/mob.gd" id="1_4qei7"]
+[ext_resource type="Script" uid="uid://b6ao3r74dhk7h" path="res://scripts/mob.gd" id="1_4qei7"]
 [ext_resource type="PackedScene" uid="uid://b5d6irirvj4hv" path="res://assets/characters/gaiman.blend" id="3_586mb"]
 [ext_resource type="PackedScene" uid="uid://d4eeqfct6vua5" path="res://scenes/ui/healthbar.tscn" id="3_cj77o"]
 [ext_resource type="PackedScene" uid="uid://8qr20qdhq6kf" path="res://scenes/ui/healthbar_team2.tscn" id="4_rbyrf"]
@@ -130,7 +130,7 @@ tracks/7/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4lrmq"]
 _data = {
-"RESET": SubResource("Animation_ijj4k")
+&"RESET": SubResource("Animation_ijj4k")
 }
 
 [sub_resource type="Animation" id="Animation_k4tvq"]
@@ -372,10 +372,10 @@ tracks/5/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_01x0k"]
 _data = {
-"RESET": SubResource("Animation_k4tvq"),
-"attack": SubResource("Animation_rrq1x"),
-"die": SubResource("Animation_vvpte"),
-"walk": SubResource("Animation_tneee")
+&"RESET": SubResource("Animation_k4tvq"),
+&"attack": SubResource("Animation_rrq1x"),
+&"die": SubResource("Animation_vvpte"),
+&"walk": SubResource("Animation_tneee")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5vgwn"]
@@ -512,8 +512,8 @@ offset_bottom = 27.464
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_4lrmq"),
-"unites": SubResource("AnimationLibrary_01x0k")
+&"": SubResource("AnimationLibrary_4lrmq"),
+&"unites": SubResource("AnimationLibrary_01x0k")
 }
 autoplay = "unites/walk"
 

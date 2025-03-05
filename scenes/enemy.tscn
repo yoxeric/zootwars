@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://c0tlvkttgu3sy"]
 
-[ext_resource type="Script" path="res://scripts/mob.gd" id="1_xrd6u"]
+[ext_resource type="Script" uid="uid://b6ao3r74dhk7h" path="res://scripts/mob.gd" id="1_xrd6u"]
 [ext_resource type="Material" uid="uid://b5sldrusscyhx" path="res://mat/red.tres" id="2_d0phn"]
 [ext_resource type="PackedScene" uid="uid://d4eeqfct6vua5" path="res://scenes/ui/healthbar.tscn" id="2_slr7c"]
 

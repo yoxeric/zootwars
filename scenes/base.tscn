@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dkb0vk52b8tf1"]
 
-[ext_resource type="Script" path="res://scripts/base.gd" id="1_jd6s8"]
+[ext_resource type="Script" uid="uid://cweb7foib63hi" path="res://scripts/base.gd" id="1_jd6s8"]
 [ext_resource type="PackedScene" uid="uid://d4eeqfct6vua5" path="res://scenes/ui/healthbar.tscn" id="2_8ktnn"]
 [ext_resource type="PackedScene" uid="uid://8qr20qdhq6kf" path="res://scenes/ui/healthbar_team2.tscn" id="4_sdtbo"]
 [ext_resource type="PackedScene" uid="uid://c3bewfs3rjov7" path="res://scenes/ui/levelcounter.tscn" id="5_lhwap"]

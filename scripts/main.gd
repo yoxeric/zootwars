@@ -52,6 +52,7 @@ var spawn_size = 222
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("main")
 	timer.start()
 	var i = 1
 	for x in mobs:
@@ -60,10 +61,13 @@ func _ready() -> void:
 
 func add_unit_profile(unit_id):
 	var profile = base_profile.instantiate()
-	var img = profile.get_node("img")
-	var price = profile.get_node("price")
-	var price_tag = profile.get_node("p/price")
-	var smiya_tag = profile.get_node("name")
+	var p = profile.get_node("profile")
+	var img = profile.get_node("profile/img")
+	var price = profile.get_node("profile/price")
+	var price_tag = profile.get_node("profile/p/price")
+	var smiya_tag = profile.get_node("profile/name")
+	
+	profile.id = unit_id
 	
 	img.texture = mobs[unit_id - 1].pfp
 	price_tag.text = str(mobs[unit_id - 1].price)
@@ -82,11 +86,11 @@ func add_unit_profile(unit_id):
 	price_tag.add_theme_font_size_override("font_size", profile_size / 8)
 
 func _input(event):
-	if event is InputEventMouseButton and event.pressed:
+	if event is InputEventMouseButton and not event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			#print("Mouse Click/Unclick at: ", event.position)
 			spawn_mob(1, clamp(mouse().z, -spawn_size, spawn_size))
-		
+	
 	# player
 	if Input.is_action_just_pressed("ok"):
 		spawn_mob(1, randf() * spawn_size - spawn_size / 2)
@@ -118,7 +122,6 @@ func _process(delta: float) -> void:
 	hp1.text = str(base1.health)
 	money2.text = str(base2.money)
 	hp2.text = str(base2.health)
-	
 
 func mouse():
 	var space = get_world_3d().direct_space_state

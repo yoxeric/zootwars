@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://ckd5y67rqdhmo"
 path.s3tc="res://.godot/imported/weeb.png-9aee760591f4d3de317825687b59624b.s3tc.ctex"
+path.etc2="res://.godot/imported/weeb.png-9aee760591f4d3de317825687b59624b.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/characters/weeb.png"
-dest_files=["res://.godot/imported/weeb.png-9aee760591f4d3de317825687b59624b.s3tc.ctex"]
+dest_files=["res://.godot/imported/weeb.png-9aee760591f4d3de317825687b59624b.s3tc.ctex", "res://.godot/imported/weeb.png-9aee760591f4d3de317825687b59624b.etc2.ctex"]
 
 [params]
 
